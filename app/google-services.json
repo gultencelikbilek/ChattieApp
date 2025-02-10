@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "894794023303",
+    "project_id": "chattierapp",
+    "storage_bucket": "chattierapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894794023303:android:06aa787110a3d5e7285322",
+        "android_client_info": {
+          "package_name": "com.example.chattieapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcIqcaBID-KIE-WrgH8oC4Zj2yxhr8dck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
