@@ -12,7 +12,7 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     val auth : FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _signUpState = MutableStateFlow<SignUpState>(SignUpState.SignUpUnAuth)
-    val
+    //val
 }
 
 sealed class SignUpState(){
