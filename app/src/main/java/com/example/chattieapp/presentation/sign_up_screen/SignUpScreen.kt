@@ -7,4 +7,6 @@ import androidx.navigation.NavController
 @Composable
 fun SignUpScreen(navController: NavController) {
 
+
+
 }

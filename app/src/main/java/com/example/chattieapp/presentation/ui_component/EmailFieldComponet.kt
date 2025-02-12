@@ -1,6 +1,5 @@
 package com.example.chattieapp.presentation.ui_component
 
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,6 +13,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.chattieapp.R
 import com.example.chattieapp.presentation.navigation.Screen
+import com.example.chattieapp.presentation.sign_in_screen.AuthState
 
 @Composable
 fun EmailFieldComponet(
@@ -129,7 +130,8 @@ fun PasswordFieldComponent(
 @Composable
 fun ButtonComponent(
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: ()->Unit
 ) {
 
     val isClicked = remember {
@@ -140,6 +142,7 @@ fun ButtonComponent(
         onClick = {
             isClicked.value = !isClicked.value
             if (isClicked.value == true) {
+                onClick()
                 navController.navigate(Screen.SignUpScreen.route)
             }
         },
