@@ -39,20 +39,7 @@ class SignInViewModel @Inject constructor(): ViewModel() {
             }
     }
 
-    fun signUp(email: String, password: String) {
-        if (email.isEmpty() || password.isEmpty()) {
-            _authState.value = AuthState.Error("Email or password can't be empty")
-        } else {
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        _authState.value = AuthState.Authenticated
-                    } else {
-                        _authState.value =
-                            AuthState.Error(task.exception?.message ?: "Something went wrong")
-                    }
-                }
-        }
-    }
+
 
     fun signOut(){
         auth.signOut()

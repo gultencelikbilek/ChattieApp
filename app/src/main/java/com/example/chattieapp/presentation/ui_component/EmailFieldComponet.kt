@@ -1,10 +1,12 @@
 package com.example.chattieapp.presentation.ui_component
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -20,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,16 +47,21 @@ fun EmailFieldComponet(
     keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction = ImeAction.Next
 ) {
+    var isEmailValid by remember { mutableStateOf(true) }
+
 
     OutlinedTextField(
         value = emailText,
         onValueChange = {
             onEmailInput(it)
+            isEmailValid = isValidEmail(it)
+
         },
+        isError = !isEmailValid,  // Hata durumunu göster
         label = {
             Text(
                 text = labelText,
-                style = TextStyle(color = Color.LightGray)
+                style = TextStyle(color = colorResource(id = R.color.gray))
             )
         },
         modifier = modifier
@@ -91,9 +99,18 @@ fun PasswordFieldComponent(
         mutableStateOf(false)
     }
 
+    val context = LocalContext.current
     OutlinedTextField(
         value = passwordText,
-        onValueChange = { onPasswordInput(it) },
+        onValueChange = {
+            // Eğer yeni şifre 11 karakterden uzun değilse, girişi kabul et
+            if (it.length <= 11) {
+                onPasswordInput(it)
+            } else {
+                // Eğer 11 karakteri geçtiyse, girişi engelle
+                Toast.makeText(context, "Password must be exactly 11 characters", Toast.LENGTH_SHORT).show()
+            }
+        },
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
@@ -109,6 +126,10 @@ fun PasswordFieldComponent(
         label = {
             Text(text = labelText, style = TextStyle(color = colorResource(id = R.color.gray)))
         },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = keyboardType,
+            imeAction = imeAction
+        ),
         trailingIcon = {
             if (isPasswordField) {
                 IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
@@ -129,9 +150,9 @@ fun PasswordFieldComponent(
 
 @Composable
 fun ButtonComponent(
-    navController: NavController,
     modifier: Modifier = Modifier,
-    onClick: ()->Unit
+    onClick: ()->Unit,
+    buttonText : String
 ) {
 
     val isClicked = remember {
@@ -143,7 +164,6 @@ fun ButtonComponent(
             isClicked.value = !isClicked.value
             if (isClicked.value == true) {
                 onClick()
-                navController.navigate(Screen.SignUpScreen.route)
             }
         },
         modifier = modifier
@@ -159,11 +179,14 @@ fun ButtonComponent(
         ),
         content = {
             Text(
-                text = stringResource(id = R.string.login),
+                text = buttonText,
                 style = TextStyle(
                     color = Color.Black,
                 )
             )
         }
     )
+}
+fun isValidEmail(email: String): Boolean { //girilen emailin email formatında olup olmadığını kontrol edecek
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
