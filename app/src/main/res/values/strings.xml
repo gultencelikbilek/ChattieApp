@@ -3,4 +3,6 @@
     <string name="gmail">Gmail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="signUp">Sign Up</string>
+    <string name="go_to_signup_page">Don\'t have an account. SignUp</string>
 </resources>

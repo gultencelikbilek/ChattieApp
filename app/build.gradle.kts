@@ -72,28 +72,37 @@ dependencies {
 
     //firebase
     implementation(libs.firebase.bom)
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-storage")
+    implementation ("com.google.firebase:firebase-messaging")
+    implementation ("com.google.auth:google-auth-library-oauth2-http:1.19.0")
+  /*  implementation(libs.firebase.core)
+    implementation (libs.firebase.crashlytics)
     implementation(libs.google.firebase.auth)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.storage)
+    implementation(libs.firebase.database)*/
     implementation(libs.androidx.annotation)
 
     //Hilt
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
-    implementation (libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //coroutines
-    implementation (libs.kotlinx.coroutines.android)
-    implementation (libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
 
 
     //lifeccycle
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.lifecycle.viewmodel.compose)
-    implementation (libs.androidx.lifecycle.livedata.ktx)
-    implementation (libs.androidx.lifecycle.runtime.ktx.v286)
-    implementation (libs.androidx.lifecycle.runtime.compose)
-    implementation (libs.androidx.runtime.livedata)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v286)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.runtime.livedata)
 }

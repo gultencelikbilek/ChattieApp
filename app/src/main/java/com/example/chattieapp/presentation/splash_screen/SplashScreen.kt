@@ -39,7 +39,7 @@ fun SplashScreen(
         delay(3000)
         when (autheCheckState.value) {
             AuthCheckState.CheckAuthenticated -> {
-                navController.navigate(Screen.SignUpScreen.route)
+                navController.navigate(Screen.HomePageScreen.route)
             }
 
             AuthCheckState.CheckUnauthenticated -> {

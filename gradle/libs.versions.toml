@@ -2,8 +2,12 @@
 agp = "8.4.0"
 annotation = "1.7.0"
 firebaseAnalytics = "21.1.0"
+firebaseAppcheck = "17.0.0"
+firebaseAppcheckInterop = "17.0.1"
+firebaseAppcheckInteropVersion = "16.0.0"
 firebaseAuth = "21.0.1"
-firebaseBom = "32.0.0"
+firebaseBom = "32.8.0"
+firebaseDatabase = "20.0.5"
 firebaseFirestore = "24.10.1"
 firebaseMessaging = "23.3.1"
 firebaseStorage = "20.3.0"
@@ -23,12 +27,21 @@ kotlinxCoroutinesAndroid = "1.7.3"
 lifecycleRuntimeKtxVersion = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
 runtimeLivedataVersion = "1.7.3"
+craslytics ="18.6.3"
 
 [libraries]
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalytics" }
+firebase-appcheck = { module = "com.google.firebase:firebase-appcheck", version.ref = "firebaseAppcheck" }
+firebase-appcheck-interop = { module = "com.google.firebase:firebase-appcheck-interop", version.ref = "firebaseAppcheckInterop" }
+firebase-appcheck-interop-v1710 = { module = "com.google.firebase:firebase-appcheck-interop", version.ref = "firebaseAppcheckInteropVersion" }
+firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appcheck-playintegrity", version.ref = "firebaseAppcheckInteropVersion" }
+firebase-appcheck-safetynet = { module = "com.google.firebase:firebase-appcheck-safetynet", version.ref = "firebaseAppcheck" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "firebaseAnalytics" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics", version.ref = "craslytics" }
+firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabase" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseMessaging" }
 firebase-storage = { module = "com.google.firebase:firebase-storage", version.ref = "firebaseStorage" }
