@@ -4,6 +4,7 @@ plugins {
     id("com.google.gms.google-services")
     kotlin("kapt")
     alias(libs.plugins.hiltInject)
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -71,21 +72,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //firebase
+ //   implementation(libs.firebase.appcheck.interop)
+   // implementation(libs.firebase.appcheck)
     implementation(libs.firebase.bom)
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-storage")
-    implementation ("com.google.firebase:firebase-messaging")
-    implementation ("com.google.auth:google-auth-library-oauth2-http:1.19.0")
-  /*  implementation(libs.firebase.core)
-    implementation (libs.firebase.crashlytics)
-    implementation(libs.google.firebase.auth)
     implementation(libs.firebase.analytics)
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.messaging)
+    implementation(libs.google.firebase.auth)
+    implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
-    implementation(libs.firebase.database)*/
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.core)
+    implementation (libs.firebase.crashlytics)
+    implementation(libs.firebase.firestore)
     implementation(libs.androidx.annotation)
 
     //Hilt

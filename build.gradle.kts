@@ -4,5 +4,5 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.google.services)
     alias(libs.plugins.hiltInject) apply false
-
+    alias(libs.plugins.crasyltics) apply false
 }
