@@ -6,6 +6,7 @@ firebaseAppcheck = "17.0.0"
 firebaseAppcheckInterop = "17.0.1"
 firebaseAppcheckInteropVersion = "17.0.1"
 firebaseAuth = "21.0.1"
+firebaseAuthKtx = "22.3.1"
 firebaseBom = "32.7.0"
 firebaseDatabase = "20.3.0"
 firebaseFirestore = "24.10.1"
@@ -34,11 +35,7 @@ pluginCrashlytics ="2.9.9"
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalytics" }
-firebase-appcheck = { module = "com.google.firebase:firebase-appcheck", version.ref = "firebaseAppcheck" }
-firebase-appcheck-interop = { module = "com.google.firebase:firebase-appcheck-interop", version.ref = "firebaseAppcheckInterop" }
-firebase-appcheck-interop-v1710 = { module = "com.google.firebase:firebase-appcheck-interop", version.ref = "firebaseAppcheckInteropVersion" }
-firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appcheck-playintegrity", version.ref = "firebaseAppcheckInteropVersion" }
-firebase-appcheck-safetynet = { module = "com.google.firebase:firebase-appcheck-safetynet", version.ref = "firebaseAppcheck" }
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "firebaseAnalytics" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics", version.ref = "craslytics" }

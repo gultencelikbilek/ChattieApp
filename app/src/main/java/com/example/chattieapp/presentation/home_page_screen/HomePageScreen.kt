@@ -1,5 +1,6 @@
 package com.example.chattieapp.presentation.home_page_screen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -34,6 +35,7 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.chattieapp.presentation.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -76,7 +78,8 @@ fun HomePageScreen(
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(Color.Red.copy(alpha = 0.3f))
                                 .clickable {
-                                    // navController.navigate("chat/${channel.id}")
+                                    Log.d("chat/channeelId","${channel.id}")
+                                     navController.navigate(Screen.ChatScreen.route+"chat/${channel.id}")
                                 }
                                 .padding(16.dp)
                         )

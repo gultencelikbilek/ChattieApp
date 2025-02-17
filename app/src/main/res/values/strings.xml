@@ -5,4 +5,5 @@
     <string name="login">Login</string>
     <string name="signUp">Sign Up</string>
     <string name="go_to_signup_page">Don\'t have an account. SignUp</string>
+    <string name="type_a_message">Type a message</string>
 </resources>

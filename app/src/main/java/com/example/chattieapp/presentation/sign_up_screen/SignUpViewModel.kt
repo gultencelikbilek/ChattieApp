@@ -1,5 +1,6 @@
 package com.example.chattieapp.presentation.sign_up_screen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.chattieapp.presentation.sign_in_screen.AuthState
 import com.google.firebase.auth.FirebaseAuth
@@ -23,9 +24,12 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _signUpState.value = SignUpState.SignUpAuth
+                    Log.d("signupviewmodel:succes","${task.isSuccessful}")
+
                 } else {
                     _signUpState.value =
                         SignUpState.Error(task.exception?.message ?: "Something went wrong")
+                    Log.d("signupviewmodel:error","${task.exception?.message}")
                 }
             }
         }
