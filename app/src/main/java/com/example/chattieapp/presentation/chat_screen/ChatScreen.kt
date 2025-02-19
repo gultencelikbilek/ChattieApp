@@ -1,14 +1,18 @@
 package com.example.chattieapp.presentation.chat_screen
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,6 +37,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -52,21 +59,27 @@ fun ChatScreen(
 
     LaunchedEffect(key1 = true) {
         if (channelId != null) {
-            Log.d("chat/channeelId","$channelId")
+            Log.d("chat/channeelId", "$channelId")
             chatScreenViewModel.listenerForMessages(channelId)
         }
     }
-    Scaffold {
+    Scaffold(
+        containerColor = Color.Black
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
         ) {
-            ChatMessages(messages = messageState.value, onSendMessage = {
-                if (channelId != null) {
-                    chatScreenViewModel.sendMessage(channelId, it)
-                }
-            })
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                ChatMessages(messages = messageState.value, onSendMessage = {
+                    if (channelId != null) {
+                        chatScreenViewModel.sendMessage(channelId, it)
+                    }
+                })
+            }
         }
     }
 }
@@ -81,7 +94,7 @@ fun ChatMessages(
     }
     val hideKeyBoardController = LocalSoftwareKeyboardController.current
     Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn{
+        LazyColumn {
             items(messages) { message ->
                 ChatBubble(message = message)
             }
@@ -91,13 +104,25 @@ fun ChatMessages(
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .padding(8.dp)
-                .background(Color.LightGray),
+                .background(Color.DarkGray),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            IconButton(onClick = {
+                msg = ""
+            }) {
+                Log.d("msg", "$msg")
+                Icon(
+                    painter = painterResource(id = R.drawable.attach), contentDescription = null,
+                    tint = colorResource(
+                        id = R.color.purple
+                    )
+                )
+            }
+
             TextField(value = msg,
                 onValueChange = {
-                msg = it
-            },
+                    msg = it
+                },
                 modifier = Modifier.weight(1f),
                 placeholder = { Text(text = stringResource(id = R.string.type_a_message)) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
@@ -105,14 +130,28 @@ fun ChatMessages(
                     onDone = {
                         hideKeyBoardController?.hide()
                     }
+                ),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.White,
+                    unfocusedTextColor = Color.White,
+                    focusedContainerColor = Color.DarkGray,
+                    unfocusedContainerColor = Color.DarkGray,
+                    focusedPlaceholderColor = Color.White,
+                    unfocusedPlaceholderColor = Color.White
                 )
             )
             IconButton(onClick = {
                 onSendMessage(msg)
                 msg = ""
             }) {
-                Log.d("msg","$msg")
-                Icon(imageVector = Icons.Filled.Send, contentDescription = null)
+                Log.d("msg", "$msg")
+                Icon(
+                    painter = painterResource(id = R.drawable.send),
+                    contentDescription = null,
+                    tint = colorResource(
+                        id = R.color.purple
+                    )
+                )
             }
         }
     }
@@ -122,30 +161,40 @@ fun ChatMessages(
 fun ChatBubble(message: Message) {
     val isCurrentUser = message.senderId == Firebase.auth.currentUser?.uid
     val bubbleColor = if (isCurrentUser) {
-        Color.Blue
+        colorResource(id = R.color.purple)
     } else {
-        Color.Green
+        Color.DarkGray
     }
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        val alignment = if(isCurrentUser) Alignment.CenterEnd else Alignment.CenterStart
-            Box(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .background(color = bubbleColor, shape = RoundedCornerShape(8.dp))
-                    .align(alignment)
-            ) {
-                Text(
-                    text = message.message,
-                    color = Color.White,
-                    modifier = Modifier.padding(8.dp)
+        val alignment = if (isCurrentUser) Alignment.CenterEnd else Alignment.CenterStart
+        Row(
+            modifier = Modifier
+                .padding(8.dp)
+                .align(alignment),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (!isCurrentUser) {
+                Image(
+                    painter = painterResource(id = R.drawable.woman),
+                    contentDescription = null,
+                    modifier = Modifier.size(40.dp)
                 )
-                Log.d("ChatBubble", "Mesaj: ${message.message}")
-
+                Spacer(modifier = Modifier.width(8.dp))
             }
+
+            Text(
+                text = message.message,
+                color = Color.White,
+                modifier = Modifier
+                    .background(color = bubbleColor, shape = RoundedCornerShape(8.dp))
+                    .padding(16.dp)
+            )
+            Log.d("ChatBubble", "Mesaj: ${message.message}")
         }
     }
+}
 
