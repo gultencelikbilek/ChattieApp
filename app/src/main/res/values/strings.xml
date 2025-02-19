@@ -6,4 +6,6 @@
     <string name="signUp">Sign Up</string>
     <string name="go_to_signup_page">Don\'t have an account. SignUp</string>
     <string name="type_a_message">Type a message</string>
+    <string name="messages">Messages</string>
+    <string name="search">Search</string>
 </resources>
