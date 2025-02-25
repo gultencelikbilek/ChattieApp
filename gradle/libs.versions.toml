@@ -1,6 +1,7 @@
 [versions]
 agp = "8.4.0"
 annotation = "1.7.0"
+coilCompose = "2.5.0"
 firebaseAnalytics = "21.1.0"
 firebaseAppcheck = "17.0.0"
 firebaseAppcheckInterop = "17.0.1"
@@ -34,6 +35,7 @@ pluginCrashlytics ="2.9.9"
 [libraries]
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }

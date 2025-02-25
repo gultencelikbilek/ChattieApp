@@ -101,4 +101,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx.v286)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.runtime.livedata)
+
+    //coil
+    implementation(libs.coil.compose)
 }

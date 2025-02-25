@@ -29,16 +29,20 @@ fun NavHost() {
         composable(Screen.HomePageScreen.route){
             HomePageScreen(navController = navController)
         }
-        composable(route = Screen.ChatScreen.route+"chat/{channelId}",
+        composable(route = Screen.ChatScreen.route+"chat/{channelId}/{channelName}",
             arguments = listOf(
                 navArgument("channelId"){
+                    type = NavType.StringType
+                },
+                navArgument("channelName"){
                     type = NavType.StringType
                 }
             )
         ){
             ChatScreen(
                 navController = navController,
-                channelId = it?.arguments?.getString("channelId")
+                channelId = it.arguments?.getString("channelId"),
+                channelName = it.arguments?.getString("channelName")
             )
         }
     }

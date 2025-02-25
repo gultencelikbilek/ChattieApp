@@ -135,9 +135,9 @@ fun HomePageScreen(
 
                 items(channelState.value) { channel ->
                     Column {
-                        ChannelItem(channelName = channel.name) {
-                            Log.d("chat/channeelId", "${channel.id}")
-                            navController.navigate(Screen.ChatScreen.route + "chat/${channel.id}")
+                        ChannelItem(channelName = channel.name, modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)) {
+                            Log.d("chat/channeelId", "${channel.id}${channel.name}")
+                            navController.navigate(Screen.ChatScreen.route + "chat/${channel.id}/${channel.name}")
                         }
                     }
                 }
@@ -159,12 +159,11 @@ fun HomePageScreen(
 }
 
 @Composable
-fun ChannelItem(channelName: String, onClick: () -> Unit) {
+fun ChannelItem(channelName: String,modifier: Modifier = Modifier, onClick: () -> Unit) {
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 2.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(DarkGray)
             .clickable {
