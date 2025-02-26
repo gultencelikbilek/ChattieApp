@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.storage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -101,6 +102,16 @@ class ChatScreenViewModel @Inject constructor() : ViewModel() {
                     //handle error
                 }
             })
+        subscribeForNotification(channelId)
     }
 
+    private fun subscribeForNotification(channelId : String?){
+        FirebaseMessaging.getInstance().subscribeToTopic("group_$channelId").addOnCompleteListener{
+            if (it.isSuccessful){
+                Log.d("chatScreenViewmodel:","Subscribe to topic : group_$channelId")
+            }else{
+                Log.d("chatScreenViewmodel:","Failed to topic : group_$channelId")
+            }
+        }
+    }
 }
