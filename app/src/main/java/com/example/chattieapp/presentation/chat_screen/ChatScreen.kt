@@ -321,8 +321,6 @@ fun ChatBubble(message: Message) {
                     )
                     .padding(16.dp)
             ) {
-
-
                 if (message.imageUrl != null) {
                     AsyncImage(
                         model = message.imageUrl,
