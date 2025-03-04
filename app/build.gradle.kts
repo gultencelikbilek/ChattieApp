@@ -113,4 +113,8 @@ dependencies {
 
     //coil
     implementation(libs.coil.compose)
+
+    implementation(libs.material)
+    implementation("com.github.ZEGOCLOUD:zego_uikit_prebuilt_call_android:+")
+    implementation(libs.permissionx)
 }

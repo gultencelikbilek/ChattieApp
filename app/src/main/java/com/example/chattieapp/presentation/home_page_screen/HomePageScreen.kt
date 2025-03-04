@@ -53,6 +53,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.chattieapp.R
+import com.example.chattieapp.presentation.chat_screen.CallButton
 import com.example.chattieapp.presentation.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -135,7 +136,10 @@ fun HomePageScreen(
 
                 items(channelState.value) { channel ->
                     Column {
-                        ChannelItem(channelName = channel.name, modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)) {
+                        ChannelItem(
+                            channelName = channel.name,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)
+                        ) {
                             Log.d("chat/channeelId", "${channel.id}${channel.name}")
                             navController.navigate(Screen.ChatScreen.route + "chat/${channel.id}/${channel.name}")
                         }
@@ -159,38 +163,50 @@ fun HomePageScreen(
 }
 
 @Composable
-fun ChannelItem(channelName: String,modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun ChannelItem(channelName: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
 
-    Row(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
             .background(DarkGray)
-            .clickable {
-                onClick()
-            },
-        verticalAlignment = Alignment.CenterVertically
     ) {
-        Box(
+        Row(
             modifier = Modifier
-                .padding(8.dp)
-                .size(70.dp)
-                .clip(CircleShape)
-                .background(Color.Yellow.copy(alpha = 0.3f))
-
+                .align(Alignment.CenterStart)
+                .clickable {
+                    onClick()
+                },
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = channelName[0].uppercase(),
-                color = White,
-                style = TextStyle(fontSize = 35.sp),
-                textAlign = TextAlign.Center,
-                modifier = Modifier.align(Alignment.Center)
-            )
+            Box(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .size(70.dp)
+                    .clip(CircleShape)
+                    .background(Color.Yellow.copy(alpha = 0.3f))
+
+            ) {
+                Text(
+                    text = channelName[0].uppercase(),
+                    color = White,
+                    style = TextStyle(fontSize = 35.sp),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+
+            Text(text = channelName, modifier = Modifier.padding(8.dp), color = White)
         }
-
-        Text(text = channelName, modifier = Modifier.padding(8.dp), color = White)
+        Row {
+            CallButton(isVideoCall = true) {
+                
+            }
+            CallButton(isVideoCall = false) {
+                
+            }
+        }
     }
-
 }
 
 @Composable
